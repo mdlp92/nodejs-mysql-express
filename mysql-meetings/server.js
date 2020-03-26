@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Potato TV extension for meetings!" });
 });
 
-require("./app/routes/customer.routes.js")(app);
+require("./app/routes/meetings.routes.js")(app);
 
 // set port, listen for requests
 app.listen(3000, () => {
