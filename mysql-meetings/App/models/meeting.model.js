@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 // constructor - added in fields to match my sql DB
-const meeting = function(meeting) {
+const Meeting = function(meeting) {
   // this.meeting_ID = meeting.meeting_ID;
   this.date = meeting.date;
   this.time = meeting.time;
@@ -9,7 +9,7 @@ const meeting = function(meeting) {
   this.content_title = meeting.content_title;
 };
 
-meeting.create = (newmeeting, result) => {
+Meeting.create = (newmeeting, result) => {
   sql.query("INSERT INTO meetings SET ?", newmeeting, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -28,7 +28,7 @@ meeting.create = (newmeeting, result) => {
   });
 };
 
-meeting.findById = (meetingId, result) => {
+Meeting.findById = (meetingId, result) => {
   sql.query(`SELECT * FROM meetings WHERE id = ${meeting_ID}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -49,7 +49,7 @@ meeting.findById = (meetingId, result) => {
   });
 };
 
-meeting.getAll = result => {
+Meeting.getAll = result => {
   sql.query("SELECT * FROM meetings", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -62,7 +62,7 @@ meeting.getAll = result => {
   });
 };
 
-meeting.updateById = (id, meeting, Content) => {
+Meeting.updateById = (id, meeting, Content) => {
   sql.query("UPDATE meetings SET email = ?, first_name = ?, last_name = ?, date = ?, time = ?, content_link = ?, content_title = ?, WHERE id = ?", [
     meeting.date,
     meeting.time,
@@ -95,7 +95,7 @@ meeting.updateById = (id, meeting, Content) => {
   });
 };
 
-meeting.remove = (id, result) => {
+Meeting.remove = (id, result) => {
   sql.query("DELETE FROM meetings WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -116,7 +116,7 @@ meeting.remove = (id, result) => {
   });
 };
 
-meeting.removeAll = result => {
+Meeting.removeAll = result => {
   sql.query("DELETE FROM meetings", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -129,4 +129,4 @@ meeting.removeAll = result => {
   });
 };
 
-module.exports = meeting;
+module.exports = Meeting;
