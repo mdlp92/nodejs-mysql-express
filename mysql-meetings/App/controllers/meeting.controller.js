@@ -47,7 +47,7 @@ exports.create = (req, res) => {
   });
 
   // Save meeting in the database
-  meeting.create(meeting, (err, data) => {
+  Meeting.create(meeting, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -58,7 +58,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  meeting.getAll((err, data) => {
+  Meeting.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -69,7 +69,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  meeting.findById(req.params.meeting_ID, (err, data) => {
+  Meeting.findById(req.params.meeting_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -92,7 +92,7 @@ exports.update = (req, res) => {
     });
   }
 
-  meeting.updateById(
+  Meeting.updateById(
     req.params.meeting_ID,
     new Meeting(req.body),
     (err, data) => {
@@ -112,7 +112,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  meeting.remove(req.params.meeting_ID, (err, data) => {
+  Meeting.remove(req.params.meeting_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -128,7 +128,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  meeting.removeAll((err, data) => {
+  Meeting.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
