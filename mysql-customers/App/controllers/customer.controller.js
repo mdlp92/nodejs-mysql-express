@@ -54,7 +54,7 @@ exports.create = (req, res) => {
   });
 
   // Save Customer in the database
-  customer.create(customer, (err, data) => {
+  Customer.create(customer, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -65,7 +65,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  customer.getAll((err, data) => {
+  Customer.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -76,7 +76,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  customer.findById(req.params.customer_ID, (err, data) => {
+  Customer.findById(req.params.customer_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -99,7 +99,7 @@ exports.update = (req, res) => {
     });
   }
 
-  customer.updateById(
+  Customer.updateById(
     req.params.customer_ID,
     new Customer(req.body),
     (err, data) => {
@@ -119,7 +119,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  customer.remove(req.params.customer_ID, (err, data) => {
+  Customer.remove(req.params.customer_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -135,7 +135,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  customer.removeAll((err, data) => {
+  Customer.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
