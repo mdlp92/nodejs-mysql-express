@@ -1,4 +1,4 @@
-const meeting = require("../models/meeting.model.js");
+const Meeting = require("../models/meeting.model.js");
 
 // Create and Save a new meeting
 exports.create = (req, res) => {
@@ -47,7 +47,7 @@ exports.create = (req, res) => {
   });
 
   // Save meeting in the database
-  Meeting.create(meeting, (err, data) => {
+  meeting.create(meeting, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -58,7 +58,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  Meeting.getAll((err, data) => {
+  meeting.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -69,7 +69,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  Meeting.findById(req.params.meeting_ID, (err, data) => {
+  meeting.findById(req.params.meeting_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -92,9 +92,9 @@ exports.update = (req, res) => {
     });
   }
 
-  Meeting.updateById(
+  meeting.updateById(
     req.params.meeting_ID,
-    new meeting(req.body),
+    new Meeting(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -112,7 +112,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  Meeting.remove(req.params.meeting_ID, (err, data) => {
+  meeting.remove(req.params.meeting_ID, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -128,7 +128,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  Meeting.removeAll((err, data) => {
+  meeting.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
