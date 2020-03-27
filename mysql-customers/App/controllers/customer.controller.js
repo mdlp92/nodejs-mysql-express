@@ -44,13 +44,6 @@ exports.create = (req, res) => {
     email: req.body.email,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    date: req.body.date,
-    time: req.body.time,
-    content_link: req.body.content_link,
-    content_title: req.body.content_title
-    // email: req.body.email,
-    // name: req.body.name,
-    // active: req.body.active
   });
 
   // Save Customer in the database
