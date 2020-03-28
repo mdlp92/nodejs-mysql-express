@@ -1,6 +1,9 @@
 // Bring in our dependencies
 const app = require('express')();
-const routes = require('./routes');
+// const routes = require('/routes');
+
+// dependencies for our routes
+var routes = require('./App/routes')(app);
 
 //  Connect all our routes to our application
 app.use('/', routes);
@@ -15,9 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Potato TV extenstion!" });
 });
-
-// dependencies for our routes
-require('./App/routes')(app);
 
 // set port, listen for requests
 app.listen(3000, () => {
