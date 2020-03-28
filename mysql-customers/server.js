@@ -1,23 +1,27 @@
 // Bring in our dependencies
-const app = require('express')();
-const routes = require('./routes');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
-//  Connect all our routes to our application
-app.use('/', routes);
+const meetingsRouter = require('./App/routes/meetings');
+const customersRouter = require('./App/routes/customers');
+
+app.use('/meetings', meetingsRouter);
+app.use('/customers', customersRouter);
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
 // parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Potato TV extenstion!" });
+  res.json({message: 'Welcome to the Potato TV extenstion'});
 });
 
 // dependencies for our routes
-require('./App/routes')(app);
+// require('./App/routes')(app);
 
 // set port, listen for requests
 app.listen(3000, () => {
