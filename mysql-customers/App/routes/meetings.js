@@ -1,19 +1,18 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+const router = express.Router({mergeParams: true})
 
-// GET /customers/meeting
-router.get('/', function (req, res, next) {
-  res.send('this is for meetings info')
-});
+const meetings = require("../controllers/meeting.controller.js");
 
-// GET /customers/meeting/meetingID
-router.get('/:id', function (req, res, next) {
-  res.send('meetingId' + req.params.customerId + ‘ for customerId' + req.params.meetingID)
+router.get('/', function(req, res, next) {
+  res.send('this is for meeting info')
 })
 
-module.exports = app => {
-  const meetings = require("../controllers/meeting.controller.js");
+// Create a new Customer
+router.post('/', meetings.create);
 
-  // Create a new meeting
-  app.post("/meetings", meetings.create);
-};
+// GET /meetings/ID
+router.get('/:meetingId', function(req, res, next) {
+  res.send('this is meeting ID' + req.params.meetingId)
+})
+
+module.exports = router;
