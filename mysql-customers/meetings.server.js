@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Potato TV extension for meetings!" });
+  res.json({ message: "Welcome to the Potato TV extenstion!" });
 });
 
 require("./app/routes/meeting.routes.js")(app);
