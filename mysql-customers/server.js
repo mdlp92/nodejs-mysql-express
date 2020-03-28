@@ -1,23 +1,19 @@
-// Bring in our dependencies
-const app = require('express')();
-// const routes = require('/routes');
-
-//  Connect all our routes to our application
-app.use('/', routes);
+const express = require('express');
+const app = express();
+const router = require('./App/routes');
 
 // parse requests of content-type: application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
+
+app.use('/', router);
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Potato TV extenstion!" });
 });
-
-// dependencies for our routes
-var routes = require('./App/routes')(app);
 
 // set port, listen for requests
 app.listen(3000, () => {
