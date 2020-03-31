@@ -3,8 +3,7 @@ const sql = require("./db.js");
 // constructor - added in fields to match my sql DB
 const Customer = function(customer) {
   this.email = customer.email;
-  this.first_name = customer.first_name;
-  this.last_name = customer.last_name;
+  this.full_name = customer.full_name;
 };
 
 Customer.create = (newCustomer, result) => {
@@ -61,10 +60,9 @@ Customer.getAll = result => {
 };
 
 Customer.updateById = (id, customer, Content) => {
-  sql.query("UPDATE customers SET email = ?, first_name = ?, last_name = ?, WHERE id = ?", [
+  sql.query("UPDATE customers SET email = ?, full_name = ?, WHERE id = ?", [
     customer.email,
-    customer.first_name,
-    customer.last_name,
+    customer.full_name,
   ], (err, res) => {
     if (err) {
       console.log("error: ", err);
